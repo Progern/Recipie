@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "181023656799",
+    "firebase_url": "https://recepie-3c9cb.firebaseio.com",
+    "project_id": "recepie-3c9cb",
+    "storage_bucket": "recepie-3c9cb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181023656799:android:db3b7ad2346b9fd2",
+        "android_client_info": {
+          "package_name": "com.olegmisko.recipie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "181023656799-io987di79fuo5oq4j75eb9cc3gtmulji.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCb-2iP9VVtCkpmX15Qji_Yfw6tcT7iAqQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

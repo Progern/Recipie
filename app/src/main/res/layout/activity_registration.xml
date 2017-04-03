@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/activity_registration"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context="com.olegmisko.recipie.Activities.LoginActivity">
+
+  <ImageView
+    android:id="@+id/background_image"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:srcCompat="@drawable/registration_screen_background" />
+
+
+  <EditText
+    android:id="@+id/username"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:layout_alignStart="@+id/password"
+    android:layout_centerVertical="true"
+    android:background="@android:color/transparent"
+    android:drawableLeft="@drawable/ic_user"
+    android:ems="12"
+    android:fontFamily="sans-serif-medium"
+    android:inputType="textPersonName"
+    android:text="@string/username"
+    android:textAlignment="center"
+    android:textColor="#FFFFFF"
+    android:textSize="16sp" />
+
+  <View
+    android:id="@+id/first_divider"
+    android:layout_width="225dp"
+    android:layout_height="2dp"
+    android:layout_alignStart="@id/username"
+    android:layout_below="@id/username"
+    android:layout_centerHorizontal="true"
+    android:paddingTop="10dp"
+    android:background="#FFFFFF" />
+
+
+  <EditText
+    android:id="@+id/password"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:layout_below="@id/first_divider"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:paddingTop="20dp"
+    android:background="@android:color/transparent"
+    android:drawableLeft="@drawable/ic_locked"
+    android:ems="12"
+    android:fontFamily="sans-serif-medium"
+    android:inputType="textPassword"
+    android:text="@string/password"
+    android:textAlignment="center"
+    android:textColor="#FFFFFF"
+    android:textSize="16sp" />
+
+  <View
+    android:id="@+id/second_divider"
+    android:layout_width="225dp"
+    android:layout_height="2dp"
+    android:layout_alignStart="@id/username"
+    android:layout_below="@id/password"
+    android:layout_centerHorizontal="true"
+    android:paddingTop="10dp"
+    android:background="#FFFFFF" />
+
+  <Button
+    android:id="@+id/submit_button"
+    android:layout_width="225dp"
+    android:layout_height="40dp"
+    android:layout_marginBottom="175dp"
+    android:layout_alignEnd="@+id/password"
+    android:layout_alignParentBottom="true"
+    android:background="@drawable/filled_rounded_button"
+    android:text="@string/submit"
+    android:textColor="#FFFFFF" />
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/forgot_password"
+    android:textColor="#FFFFFF"
+    android:layout_marginTop="80dp"
+    android:id="@+id/forgotPassword"
+    android:layout_below="@+id/second_divider"
+    android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

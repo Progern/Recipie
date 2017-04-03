@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/activity_login"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context="com.olegmisko.recipie.Activities.LoginActivity">
+
+  <ImageView
+    android:id="@+id/background_image"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:srcCompat="@drawable/login_screen_background" />
+
+
+  <EditText
+    android:id="@+id/username"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:layout_alignStart="@+id/password"
+    android:layout_centerVertical="true"
+    android:background="@android:color/transparent"
+    android:drawableLeft="@drawable/ic_user"
+    android:ems="12"
+    android:fontFamily="sans-serif-medium"
+    android:inputType="textPersonName"
+    android:text="@string/username"
+    android:textAlignment="center"
+    android:textColor="#FFFFFF"
+    android:textSize="16sp" />
+
+  <View
+    android:id="@+id/first_divider"
+    android:layout_width="225dp"
+    android:layout_height="2dp"
+    android:layout_alignStart="@id/username"
+    android:layout_below="@id/username"
+    android:layout_centerHorizontal="true"
+    android:paddingTop="10dp"
+    android:background="#FFFFFF" />
+
+
+  <EditText
+    android:id="@+id/password"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:layout_below="@id/first_divider"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true"
+    android:paddingTop="20dp"
+    android:background="@android:color/transparent"
+    android:drawableLeft="@drawable/ic_locked"
+    android:ems="12"
+    android:fontFamily="sans-serif-medium"
+    android:inputType="textPassword"
+    android:text="@string/password"
+    android:textAlignment="center"
+    android:textColor="#FFFFFF"
+    android:textSize="16sp" />
+
+  <View
+    android:id="@+id/second_divider"
+    android:layout_width="225dp"
+    android:layout_height="2dp"
+    android:layout_alignStart="@id/username"
+    android:layout_below="@id/password"
+    android:layout_centerHorizontal="true"
+    android:paddingTop="10dp"
+    android:background="#FFFFFF" />
+
+  <Button
+    android:id="@+id/submit_button"
+    android:layout_width="225dp"
+    android:layout_height="40dp"
+    android:layout_marginBottom="150dp"
+    android:layout_alignEnd="@+id/password"
+    android:layout_alignParentBottom="true"
+    android:background="@drawable/filled_rounded_button"
+    android:text="@string/submit"
+    android:textColor="#FFFFFF" />
+
+  <Button
+    android:id="@+id/facebook_submit"
+    android:layout_width="225dp"
+    android:layout_height="40dp"
+    android:layout_marginBottom="90dp"
+    android:layout_alignEnd="@+id/submit_button"
+    android:layout_alignParentBottom="true"
+    android:background="@drawable/filled_rounded_button_facebook_style"
+    android:text="@string/login_via_facebook"
+    android:textColor="#FFFFFF" />
+
+  <Button
+    android:id="@+id/google_submit"
+    android:layout_width="225dp"
+    android:layout_height="40dp"
+    android:layout_marginBottom="30dp"
+    android:layout_alignEnd="@+id/facebook_submit"
+    android:layout_alignParentBottom="true"
+    android:background="@drawable/filled_rounded_button_google_style"
+    android:text="@string/login_via_google"
+    android:textColor="#FFFFFF" />
+
+</RelativeLayout>
