@@ -10,4 +10,6 @@
   <string name="login_via_google">Login via Google</string>
   <string name="forgot_password"><u>Forgot password?</u></string>
   <string name="email">Email</string>
+  <string name="already_registered_sign_in"><u>Already registered? Sign in.</u></string>
+  <string name="not_registered_yet_create_an_account_now"><u>Not registered yet? Create an account now.</u></string>
 </resources>

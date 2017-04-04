@@ -25,8 +25,8 @@
     android:drawableLeft="@drawable/ic_user"
     android:ems="12"
     android:fontFamily="sans-serif-medium"
-    android:inputType="textPersonName"
     android:hint="@string/email"
+    android:inputType="textPersonName"
     android:textAlignment="center"
     android:textColor="#FFFFFF"
     android:textSize="16sp" />
@@ -55,8 +55,8 @@
     android:drawableLeft="@drawable/ic_locked"
     android:ems="12"
     android:fontFamily="sans-serif-medium"
-    android:inputType="textPassword"
     android:hint="@string/password"
+    android:inputType="textPassword"
     android:textAlignment="center"
     android:textColor="#FFFFFF"
     android:textSize="16sp" />
@@ -82,14 +82,15 @@
     android:text="@string/submit"
     android:textColor="#FFFFFF" />
 
+
   <TextView
+    android:id="@+id/alreadyRegistered"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="@string/forgot_password"
-    android:textColor="#FFFFFF"
     android:layout_marginTop="80dp"
-    android:id="@+id/forgotPassword"
     android:layout_below="@+id/second_divider"
-    android:layout_centerHorizontal="true" />
+    android:layout_centerHorizontal="true"
+    android:text="@string/already_registered_sign_in"
+    android:textColor="#FFFFFF" />
 
 </RelativeLayout>
