@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "181023656799-drg2abh8m4v1bmf0tfl7t8j4q5nsdk26.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.olegmisko.recipie",
+            "certificate_hash": "f38165f37ebc39ad27c42cf237b3830f1dd292de"
+          }
+        },
+        {
           "client_id": "181023656799-io987di79fuo5oq4j75eb9cc3gtmulji.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "181023656799-io987di79fuo5oq4j75eb9cc3gtmulji.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

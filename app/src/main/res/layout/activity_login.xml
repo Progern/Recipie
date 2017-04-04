@@ -15,7 +15,7 @@
 
 
   <EditText
-    android:id="@+id/username"
+    android:id="@+id/email"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
@@ -26,7 +26,7 @@
     android:ems="12"
     android:fontFamily="sans-serif-medium"
     android:inputType="textPersonName"
-    android:text="@string/username"
+    android:hint="@string/username"
     android:textAlignment="center"
     android:textColor="#FFFFFF"
     android:textSize="16sp" />
@@ -35,8 +35,8 @@
     android:id="@+id/first_divider"
     android:layout_width="225dp"
     android:layout_height="2dp"
-    android:layout_alignStart="@id/username"
-    android:layout_below="@id/username"
+    android:layout_alignStart="@id/email"
+    android:layout_below="@id/email"
     android:layout_centerHorizontal="true"
     android:paddingTop="10dp"
     android:background="#FFFFFF" />
@@ -56,7 +56,7 @@
     android:ems="12"
     android:fontFamily="sans-serif-medium"
     android:inputType="textPassword"
-    android:text="@string/password"
+    android:hint="@string/password"
     android:textAlignment="center"
     android:textColor="#FFFFFF"
     android:textSize="16sp" />
@@ -65,7 +65,7 @@
     android:id="@+id/second_divider"
     android:layout_width="225dp"
     android:layout_height="2dp"
-    android:layout_alignStart="@id/username"
+    android:layout_alignStart="@id/email"
     android:layout_below="@id/password"
     android:layout_centerHorizontal="true"
     android:paddingTop="10dp"

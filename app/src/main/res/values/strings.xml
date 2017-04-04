@@ -9,4 +9,5 @@
   <string name="login_via_facebook">Login via Facebook</string>
   <string name="login_via_google">Login via Google</string>
   <string name="forgot_password"><u>Forgot password?</u></string>
+  <string name="email">Email</string>
 </resources>
