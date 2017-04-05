@@ -7,6 +7,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.EditText
 import com.google.firebase.auth.FirebaseAuth
+import com.olegmisko.recipie.Config.LOGIN_STATE
 import com.olegmisko.recipie.R
 import kotlinx.android.synthetic.main.activity_registration.*
 import kotlinx.android.synthetic.main.activity_registration.view.*
@@ -33,6 +34,7 @@ class RegistrationActivity : AppCompatActivity() {
         activity_registration.submit_button.onClick {
             if (checkCredentials()) {
                 registerUser(activity_registration.email.text.toString(), activity_registration.password.text.toString())
+                progressDialog.show()
             } else {
 
             }
@@ -88,7 +90,8 @@ class RegistrationActivity : AppCompatActivity() {
                 .addOnSuccessListener {
                     progressDialog.dismiss()
                     toast("Registration successful.")
-                    // Login user, write to user defaults new state
+                    changeUserStateLoggedIn()
+                    startActivity(intentFor<MainActivity>())
                 }
 
                 .addOnFailureListener {
@@ -97,6 +100,10 @@ class RegistrationActivity : AppCompatActivity() {
                 }
 
 
+    }
+
+    private fun changeUserStateLoggedIn() {
+        this.getSharedPreferences(com.olegmisko.recipie.Config.PREFS_NAME, 0).edit().putBoolean(LOGIN_STATE, true).apply()
     }
 
     /*

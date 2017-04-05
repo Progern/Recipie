@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/activity_main"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context="com.olegmisko.recipie.Activities.MainActivity">
+
+  <ImageView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:src="@drawable/main_screen" />
+
+
+  <GridLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:columnCount="2"
+    android:rowCount="3">
+    <LinearLayout
+      android:paddingBottom="30dp"
+      android:paddingRight="15dp"
+      android:orientation="vertical">
+      <ImageView
+        android:id="@+id/searchRecipes"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        app:srcCompat="@drawable/ic_recipe" />
+      <TextView
+        android:id="@+id/search_recipes_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/search_recipes"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        android:paddingTop="5dp"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+      android:paddingBottom="30dp"
+      android:paddingLeft="15dp"
+      android:orientation="vertical">
+      <ImageView
+        android:id="@+id/addRecipe"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        app:srcCompat="@drawable/ic_add_recipe" />
+      <TextView
+        android:id="@+id/add_recipes_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/add_your_recipe"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        android:paddingTop="5dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+      android:paddingBottom="30dp"
+      android:paddingRight="15dp"
+      android:orientation="vertical">
+      <ImageView
+        android:id="@+id/favoriteRecipes"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        app:srcCompat="@drawable/ic_favorite_recipes" />
+      <TextView
+        android:id="@+id/favorite_recipes_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/favorite_recipes"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        android:paddingTop="5dp"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+      android:paddingBottom="30dp"
+      android:paddingLeft="15dp"
+      android:orientation="vertical">
+      <ImageView
+        android:id="@+id/information"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        app:srcCompat="@drawable/ic_information" />
+      <TextView
+        android:id="@+id/information_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/information"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        android:paddingTop="5dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+      android:paddingLeft="15dp"
+      android:orientation="vertical">
+      <ImageView
+        android:id="@+id/settings"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        app:srcCompat="@drawable/ic_settings" />
+      <TextView
+        android:id="@+id/settings_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/settings"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        android:paddingTop="5dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+      android:paddingRight="15dp"
+      android:orientation="vertical">
+      <ImageView
+        android:id="@+id/logout"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        app:srcCompat="@drawable/ic_exit" />
+      <TextView
+        android:id="@+id/logout_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/log_out"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        android:paddingTop="5dp"/>
+    </LinearLayout>
+
+
+  </GridLayout>
+</RelativeLayout>

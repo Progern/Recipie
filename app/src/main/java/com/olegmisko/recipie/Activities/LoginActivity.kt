@@ -7,6 +7,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.EditText
 import com.google.firebase.auth.FirebaseAuth
+import com.olegmisko.recipie.Config.LOGIN_STATE
 import com.olegmisko.recipie.R
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.view.*
@@ -94,6 +95,8 @@ class LoginActivity : AppCompatActivity() {
                 .addOnSuccessListener {
                     progressDialog.dismiss()
                     toast("Logged in successfully.")
+                    changeUserStateLoggedIn()
+                    startActivity(intentFor<MainActivity>())
                 }
 
                 .addOnFailureListener {
@@ -102,6 +105,10 @@ class LoginActivity : AppCompatActivity() {
                 }
 
 
+    }
+
+    private fun changeUserStateLoggedIn() {
+        this.getSharedPreferences(com.olegmisko.recipie.Config.PREFS_NAME, 0).edit().putBoolean(LOGIN_STATE, true).apply()
     }
 
     private fun checkField(field: EditText): Boolean {
