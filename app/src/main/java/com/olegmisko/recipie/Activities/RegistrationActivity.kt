@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Window
 import android.view.WindowManager
 import android.widget.EditText
+import com.daimajia.androidanimations.library.Techniques
+import com.daimajia.androidanimations.library.YoYo
 import com.google.firebase.auth.FirebaseAuth
-import com.olegmisko.recipie.Config.LOGIN_STATE
 import com.olegmisko.recipie.R
+import com.olegmisko.recipie.Services.changeUserStateToLoggedIn
 import kotlinx.android.synthetic.main.activity_registration.*
 import kotlinx.android.synthetic.main.activity_registration.view.*
 import org.jetbrains.anko.indeterminateProgressDialog
@@ -27,7 +29,7 @@ class RegistrationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_registration)
 
         firebaseAuthenticationManager = FirebaseAuth.getInstance()
-        progressDialog = indeterminateProgressDialog("Verifying credentials…")
+        progressDialog = indeterminateProgressDialog("Registration in progress…")
         progressDialog.dismiss()
 
 
@@ -64,16 +66,25 @@ class RegistrationActivity : AppCompatActivity() {
      */
     private fun checkCredentials(): Boolean {
         if (!checkField(activity_registration.email)) {
+            YoYo.with(Techniques.Shake)
+                    .duration(500)
+                    .playOn(activity_registration.email)
             toast("Email field is required.")
             return false
         }
 
         if (!checkField(activity_registration.password)) {
+            YoYo.with(Techniques.Shake)
+                    .duration(500)
+                    .playOn(activity_registration.password)
             toast("Password field is required.")
             return false
         }
 
         if (!checkPasswordFieldForLength()) {
+            YoYo.with(Techniques.Pulse)
+                    .duration(500)
+                    .playOn(activity_registration.password)
             toast("Password must be at least 6 characters length.")
             return false
         }
@@ -90,7 +101,7 @@ class RegistrationActivity : AppCompatActivity() {
                 .addOnSuccessListener {
                     progressDialog.dismiss()
                     toast("Registration successful.")
-                    changeUserStateLoggedIn()
+                    changeUserStateToLoggedIn(getSharedPreferences(com.olegmisko.recipie.Config.PREFS_NAME, 0))
                     startActivity(intentFor<MainActivity>())
                 }
 
@@ -102,9 +113,6 @@ class RegistrationActivity : AppCompatActivity() {
 
     }
 
-    private fun changeUserStateLoggedIn() {
-        this.getSharedPreferences(com.olegmisko.recipie.Config.PREFS_NAME, 0).edit().putBoolean(LOGIN_STATE, true).apply()
-    }
 
     /*
         Hides the app bar and the status bar
