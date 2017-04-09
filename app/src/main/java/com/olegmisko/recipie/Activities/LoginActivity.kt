@@ -1,5 +1,6 @@
 package com.olegmisko.recipie.Activities
 
+import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -9,6 +10,8 @@ import android.widget.EditText
 import com.google.firebase.auth.FirebaseAuth
 import com.olegmisko.recipie.R
 import com.olegmisko.recipie.Services.changeUserStateToLoggedIn
+import com.olegmisko.recipie.Services.checkInternetConnection
+import com.olegmisko.recipie.Services.showNoConnectionDialog
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.view.*
 import org.jetbrains.anko.*
@@ -30,11 +33,15 @@ class LoginActivity : AppCompatActivity() {
 
 
         activity_login.submit_button.onClick {
-            if (checkField(activity_login.email) && checkField(activity_login.password)) {
-                userLogin(activity_login.email.text.toString(), activity_login.password.text.toString())
-                progressDialog.show()
+            if (!checkInternetConnection()) {
+                showNoConnectionDialog(this)
             } else {
+                if (checkField(activity_login.email) && checkField(activity_login.password)) {
+                    userLogin(activity_login.email.text.toString(), activity_login.password.text.toString())
+                    progressDialog.show()
+                } else {
 
+                }
             }
         }
 
@@ -111,4 +118,5 @@ class LoginActivity : AppCompatActivity() {
     private fun checkField(field: EditText): Boolean {
         return !field.text.isEmpty()
     }
+
 }

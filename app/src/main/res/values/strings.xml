@@ -19,4 +19,5 @@
   <string name="log_out">Logout</string>
   <string name="information">Information</string>
   <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla finibus mauris sed leo finibus, at feugiat nibh scelerisque. In ac massa at metus tincidunt eleifend. Donec pretium nisl eleifend, feugiat ante in, facilisis libero. Aenean sagittis sed ipsum in pellentesque. Duis eu arcu non purus fringilla pulvinar. Pellentesque pharetra posuere ex id ullamcorper. Curabitur suscipit ornare bibendum. Quisque viverra lacus a condimentum gravida</string>
+  <string name="type_recipe_name_here">Type recipe name here...</string>
 </resources>

@@ -10,3 +10,5 @@ fun changeUserStateToLoggedIn(sharedPreferences : SharedPreferences ) {
 fun changeUserStateToLoggedOut(sharedPreferences: SharedPreferences) {
     sharedPreferences.edit().putBoolean(LOGIN_STATE, false).apply()
 }
+
+

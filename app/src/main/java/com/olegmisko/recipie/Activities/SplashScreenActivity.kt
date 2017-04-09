@@ -7,8 +7,10 @@ import android.view.Window
 import android.view.WindowManager
 import com.olegmisko.recipie.Config.LOGIN_STATE
 import com.olegmisko.recipie.R
+import com.olegmisko.recipie.Services.checkInternetConnection
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 import kotlinx.android.synthetic.main.activity_splash_screen.view.*
+import org.jetbrains.anko.alert
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.onClick
 import org.jetbrains.anko.toast

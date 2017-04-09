@@ -35,8 +35,8 @@ class RecipeAdapter(val recipesList: ArrayList<Recipe>) :
 
         fun bindRecipe(recipe: Recipe) {
             with(recipe) {
-                Picasso.with(itemView.context).load(recipe.imageURL).into(itemView.recipeImage)
-                itemView.title.text = recipe.title
+                Picasso.with(itemView.context).load(recipe.image).into(itemView.recipeImage)
+                itemView.title.text = recipe.label
                 itemView.save.onClick {
                     // Invoke download manager
 

@@ -1,13 +1,16 @@
 package com.olegmisko.recipie.Models
 
+
 /*
 
-class Recipe(val title : String, val imageURL : String, val url : String, val ingredients : ArrayList<Ingredient>, val calories : Float) {
+   This class represents independent recipe
+   from Hits JSON-Array
 
-}
+ */
+class Recipe(val label: String,
 
-        */
+             val image: String,
 
-class Recipe(val title: String, val imageURL : String) {
+             val url : String,
 
-}
+             val ingredientLines : ArrayList<String>)
