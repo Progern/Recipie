@@ -1,5 +1,9 @@
 package com.olegmisko.recipie.Models
 
+import io.realm.RealmList
+import io.realm.RealmObject
+import io.realm.annotations.RealmClass
+
 
 /*
 
@@ -7,10 +11,20 @@ package com.olegmisko.recipie.Models
    from Hits JSON-Array
 
  */
-class Recipe(val label: String,
 
-             val image: String,
+@RealmClass
+open class Recipe constructor(open var label: String,
 
-             val url : String,
+                              open var image: String,
 
-             val ingredientLines : ArrayList<String>)
+                              open var url: String,
+
+                              open var id: Int) : RealmObject() {
+
+    /* Default constructor for Realm */
+    constructor() : this("", "", "", -1)
+
+}
+
+
+

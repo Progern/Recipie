@@ -12,8 +12,12 @@ val LOGIN_STATE = "LoginState"
 
 
 /*
-    Http request setction
+    Http request section
  */
 val BASE_URL = "https://api.edamam.com/"
 val APP_ID = "4d34e622"
 val APP_KEY = "c6846809667b0ddd998b6d55a6554e8b"
+
+
+val FAVORITE_RECIPES_ID = 0
+val ADDED_RECIPES_ID = 1

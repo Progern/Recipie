@@ -4,15 +4,20 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.TransitionDrawable
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.olegmisko.recipie.Models.Recipe
 import com.olegmisko.recipie.R
+import com.olegmisko.recipie.Services.DatabaseService
 import com.squareup.picasso.Picasso
+import io.realm.Realm
 import kotlinx.android.synthetic.main.recipe_item_layout.view.*
 import org.jetbrains.anko.image
 import org.jetbrains.anko.onClick
+import org.jetbrains.anko.toast
 
 
 class RecipeAdapter(val recipesList: ArrayList<Recipe>) :
@@ -43,18 +48,15 @@ class RecipeAdapter(val recipesList: ArrayList<Recipe>) :
                 }
 
                 itemView.like.onClick {
+                    Realm.init(itemView.context)
                     if (isLiked) {
-                        val transitionDrawable = TransitionDrawable(arrayOf<Drawable>(ContextCompat.getDrawable(itemView.context, R.drawable.ic_star_before_like), ContextCompat.getDrawable(itemView.context, R.drawable.ic_star_after_like)))
-                        itemView.like.image = transitionDrawable
-                        transitionDrawable.startTransition(500)
+                        makeRecipeUnLiked(itemView.like)
                         isLiked = false
-                        // Remove from "favorites"
+                        DatabaseService.removeRecipeFromFavorites(recipe)
                     } else {
-                        val transitionDrawable = TransitionDrawable(arrayOf<Drawable>(ContextCompat.getDrawable(itemView.context, R.drawable.ic_star_after_like), ContextCompat.getDrawable(itemView.context, R.drawable.ic_star_before_like)))
-                        itemView.like.image = transitionDrawable
-                        transitionDrawable.startTransition(500)
+                        makeRecipeLiked(itemView.like)
                         isLiked = true
-                        // Add to "favorites"
+                        DatabaseService.addNewFavoriteRecipe(recipe)
                     }
 
                 }
@@ -68,6 +70,20 @@ class RecipeAdapter(val recipesList: ArrayList<Recipe>) :
                 }
             }
         }
+
+        private fun makeRecipeUnLiked(view : ImageView) {
+            val transitionDrawable = TransitionDrawable(arrayOf<Drawable>(ContextCompat.getDrawable(view.context, R.drawable.ic_star_before_like), ContextCompat.getDrawable(itemView.context, R.drawable.ic_star_after_like)))
+            view.image = transitionDrawable
+            transitionDrawable.startTransition(500)
+        }
+
+        private fun makeRecipeLiked(view : ImageView) {
+            val transitionDrawable = TransitionDrawable(arrayOf<Drawable>(ContextCompat.getDrawable(view.context, R.drawable.ic_star_after_like), ContextCompat.getDrawable(itemView.context, R.drawable.ic_star_before_like)))
+            view.image = transitionDrawable
+            transitionDrawable.startTransition(500)
+        }
     }
+
+
 
 }

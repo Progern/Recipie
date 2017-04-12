@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import com.olegmisko.recipie.Models.Hit
 import com.olegmisko.recipie.Models.Recipe
 import com.olegmisko.recipie.Models.Response
 import com.olegmisko.recipie.R
@@ -30,6 +31,7 @@ class SearchRecipesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_recipes)
+        title = "Search recipes"
         progressDialog = indeterminateProgressDialog("Fetching data…")
         progressDialog.dismiss()
 
@@ -43,13 +45,13 @@ class SearchRecipesActivity : AppCompatActivity() {
         val callResponse = recipesRetrieveService.getRecipes(query)
         callResponse.enqueue(object : Callback<Response> {
             override fun onFailure(call: Call<Response>?, t: Throwable?) {
-
+                toast("Failure")
             }
 
             override fun onResponse(call: Call<Response>?, response: retrofit2.Response<Response>?) {
                 if (response != null) {
                     val recipesList = ArrayList<Recipe>()
-                    response.body().hits.mapTo(recipesList) { it.recipe }
+                    response.body().hits.mapTo(recipesList, Hit::recipe)
                     recipesAdapter = RecipeAdapter(recipesList)
                     val mLayoutManager = LinearLayoutManager(applicationContext)
                     mLayoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -70,7 +72,9 @@ class SearchRecipesActivity : AppCompatActivity() {
                 .setMessage("Input desirable recipe name and start your tasty journey")
                 .setIcon(R.drawable.ic_recipes_book)
                 .setConfirmButton("Search", { text ->
-                    if (!text.isEmpty()) performSearchRequest(text) })
+                    if (!text.isEmpty())
+                        progressDialog.show()
+                        performSearchRequest(text) })
                 .show()
     }
 }
