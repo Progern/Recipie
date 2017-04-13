@@ -3,12 +3,16 @@ package com.olegmisko.recipie.Services
 import android.content.SharedPreferences
 import com.olegmisko.recipie.Config.LOGIN_STATE
 
-fun changeUserStateToLoggedIn(sharedPreferences : SharedPreferences ) {
-    sharedPreferences.edit().putBoolean(LOGIN_STATE, true).apply()
-}
+internal object LoginStateService {
 
-fun changeUserStateToLoggedOut(sharedPreferences: SharedPreferences) {
-    sharedPreferences.edit().putBoolean(LOGIN_STATE, false).apply()
+    fun changeUserStateToLoggedIn(sharedPreferences: SharedPreferences) {
+        sharedPreferences.edit().putBoolean(LOGIN_STATE, true).apply()
+    }
+
+    fun changeUserStateToLoggedOut(sharedPreferences: SharedPreferences) {
+        sharedPreferences.edit().putBoolean(LOGIN_STATE, false).apply()
+    }
+
 }
 
 

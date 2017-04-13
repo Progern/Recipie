@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Window
 import android.view.WindowManager
 import com.olegmisko.recipie.R
-import com.olegmisko.recipie.Services.changeUserStateToLoggedOut
+import com.olegmisko.recipie.Services.LoginStateService
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.view.*
 import org.jetbrains.anko.intentFor
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         activity_main.logout.onClick {
-            changeUserStateToLoggedOut(getSharedPreferences(com.olegmisko.recipie.Config.PREFS_NAME, 0))
+            LoginStateService.changeUserStateToLoggedOut(getSharedPreferences(com.olegmisko.recipie.Config.PREFS_NAME, 0))
             startActivity(intentFor<SplashScreenActivity>())
         }
 

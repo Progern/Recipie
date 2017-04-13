@@ -1,23 +1,20 @@
 package com.olegmisko.recipie.Views
 
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.TransitionDrawable
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import com.olegmisko.recipie.Models.Recipe
 import com.olegmisko.recipie.R
 import com.olegmisko.recipie.Services.DatabaseService
+import com.olegmisko.recipie.Services.DownloadRecipeService
 import com.squareup.picasso.Picasso
 import io.realm.Realm
 import kotlinx.android.synthetic.main.recipe_item_layout.view.*
 import org.jetbrains.anko.image
 import org.jetbrains.anko.onClick
-import org.jetbrains.anko.toast
 
 
 class RecipeAdapter(val recipesList: ArrayList<Recipe>) :
@@ -34,28 +31,27 @@ class RecipeAdapter(val recipesList: ArrayList<Recipe>) :
 
     override fun getItemCount() = recipesList.size
 
-    class RecipeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
-        private var isLiked: Boolean = false
+    class RecipeViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bindRecipe(recipe: Recipe) {
             with(recipe) {
                 Picasso.with(itemView.context).load(recipe.image).into(itemView.recipeImage)
                 itemView.title.text = recipe.label
+                Realm.init(itemView.context)
                 itemView.save.onClick {
-                    // Invoke download manager
-
+                    if (DownloadRecipeService.isExternalStorageWritable() || DownloadRecipeService.isExternalStorageWritable()) {
+                        DownloadRecipeService.saveRecipeFileToPhone(recipe, itemView.context)
+                    }
                 }
 
                 itemView.like.onClick {
-                    Realm.init(itemView.context)
-                    if (isLiked) {
-                        makeRecipeUnLiked(itemView.like)
-                        isLiked = false
+                    if (recipe.isFavorite) {
+                        itemView.like.image = ContextCompat.getDrawable(itemView.context, R.drawable.ic_star_before_like)
+                        recipe.isFavorite = false
                         DatabaseService.removeRecipeFromFavorites(recipe)
                     } else {
-                        makeRecipeLiked(itemView.like)
-                        isLiked = true
+                        itemView.like.image = ContextCompat.getDrawable(itemView.context, R.drawable.ic_star_after_like)
+                        recipe.isFavorite = true
                         DatabaseService.addNewFavoriteRecipe(recipe)
                     }
 
@@ -71,19 +67,5 @@ class RecipeAdapter(val recipesList: ArrayList<Recipe>) :
             }
         }
 
-        private fun makeRecipeUnLiked(view : ImageView) {
-            val transitionDrawable = TransitionDrawable(arrayOf<Drawable>(ContextCompat.getDrawable(view.context, R.drawable.ic_star_before_like), ContextCompat.getDrawable(itemView.context, R.drawable.ic_star_after_like)))
-            view.image = transitionDrawable
-            transitionDrawable.startTransition(500)
-        }
-
-        private fun makeRecipeLiked(view : ImageView) {
-            val transitionDrawable = TransitionDrawable(arrayOf<Drawable>(ContextCompat.getDrawable(view.context, R.drawable.ic_star_after_like), ContextCompat.getDrawable(itemView.context, R.drawable.ic_star_before_like)))
-            view.image = transitionDrawable
-            transitionDrawable.startTransition(500)
-        }
     }
-
-
-
 }

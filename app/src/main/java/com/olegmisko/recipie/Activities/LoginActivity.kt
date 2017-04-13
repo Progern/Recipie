@@ -1,6 +1,5 @@
 package com.olegmisko.recipie.Activities
 
-import android.app.AlertDialog
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -8,10 +7,10 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.EditText
 import com.google.firebase.auth.FirebaseAuth
+import com.olegmisko.recipie.Config.PREFS_NAME
 import com.olegmisko.recipie.R
-import com.olegmisko.recipie.Services.changeUserStateToLoggedIn
-import com.olegmisko.recipie.Services.checkInternetConnection
-import com.olegmisko.recipie.Services.showNoConnectionDialog
+import com.olegmisko.recipie.Services.InternetConnectionService
+import com.olegmisko.recipie.Services.LoginStateService
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.view.*
 import org.jetbrains.anko.*
@@ -33,8 +32,8 @@ class LoginActivity : AppCompatActivity() {
 
 
         activity_login.submit_button.onClick {
-            if (!checkInternetConnection()) {
-                showNoConnectionDialog(this)
+            if (!InternetConnectionService.checkInternetConnection()) {
+                InternetConnectionService.showNoConnectionDialog(this)
             } else {
                 if (checkField(activity_login.email) && checkField(activity_login.password)) {
                     userLogin(activity_login.email.text.toString(), activity_login.password.text.toString())
@@ -102,7 +101,7 @@ class LoginActivity : AppCompatActivity() {
                 .addOnSuccessListener {
                     progressDialog.dismiss()
                     toast("Logged in successfully.")
-                    changeUserStateToLoggedIn(getSharedPreferences(com.olegmisko.recipie.Config.PREFS_NAME, 0))
+                    LoginStateService.changeUserStateToLoggedIn(getSharedPreferences(PREFS_NAME, 0))
                     startActivity(intentFor<MainActivity>())
                 }
 

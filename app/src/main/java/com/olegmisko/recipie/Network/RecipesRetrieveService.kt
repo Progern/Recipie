@@ -1,4 +1,4 @@
-package com.olegmisko.recipie.Services
+package com.olegmisko.recipie.Network
 
 import com.olegmisko.recipie.Models.Response
 import retrofit2.Call

@@ -19,10 +19,18 @@ open class Recipe constructor(open var label: String,
 
                               open var url: String,
 
-                              open var id: Int) : RealmObject() {
+                              open var ingredients: RealmList<Ingredient>?,
+
+                              open var calories: Float,
+
+                              open var totalWeight: Float,
+
+                              open var id: Int,
+
+                              open var isFavorite: Boolean) : RealmObject() {
 
     /* Default constructor for Realm */
-    constructor() : this("", "", "", -1)
+    constructor() : this("Label", "Image_URL", "URL", null, 0F, 0F, -1, false )
 
 }
 

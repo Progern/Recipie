@@ -7,7 +7,7 @@ import android.view.Window
 import android.view.WindowManager
 import com.olegmisko.recipie.Config.LOGIN_STATE
 import com.olegmisko.recipie.R
-import com.olegmisko.recipie.Services.checkInternetConnection
+import com.olegmisko.recipie.Services.DownloadRecipeService
 import kotlinx.android.synthetic.main.activity_splash_screen.*
 import kotlinx.android.synthetic.main.activity_splash_screen.view.*
 import org.jetbrains.anko.alert
@@ -22,6 +22,7 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         hideStatusBar()
         setContentView(R.layout.activity_splash_screen)
+        DownloadRecipeService.askExternalStoragePermissions(this)
 
         activity_splash_screen.sign_in_button.onClick {
            if (checkLoginState()) {

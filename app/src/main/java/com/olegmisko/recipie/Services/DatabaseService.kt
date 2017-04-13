@@ -9,8 +9,7 @@ import io.realm.RealmResults
 
 internal object DatabaseService {
 
-    val instance = DatabaseService
-    val realmInstance = Realm.getDefaultInstance()
+    val realmInstance = Realm.getDefaultInstance()!!
 
     fun addNewFavoriteRecipe(recipe: Recipe) {
         realmInstance.beginTransaction()

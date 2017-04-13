@@ -9,10 +9,10 @@ import android.widget.EditText
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.google.firebase.auth.FirebaseAuth
+import com.olegmisko.recipie.Config.PREFS_NAME
 import com.olegmisko.recipie.R
-import com.olegmisko.recipie.Services.changeUserStateToLoggedIn
-import com.olegmisko.recipie.Services.checkInternetConnection
-import com.olegmisko.recipie.Services.showNoConnectionDialog
+import com.olegmisko.recipie.Services.InternetConnectionService
+import com.olegmisko.recipie.Services.LoginStateService
 import kotlinx.android.synthetic.main.activity_registration.*
 import kotlinx.android.synthetic.main.activity_registration.view.*
 import org.jetbrains.anko.indeterminateProgressDialog
@@ -36,8 +36,8 @@ class RegistrationActivity : AppCompatActivity() {
 
 
         activity_registration.submit_button.onClick {
-            if (!checkInternetConnection()) {
-                showNoConnectionDialog(this)
+            if (!InternetConnectionService.checkInternetConnection()) {
+                InternetConnectionService.showNoConnectionDialog(this)
             } else {
                 if (checkCredentials()) {
                     registerUser(activity_registration.email.text.toString(), activity_registration.password.text.toString())
@@ -107,7 +107,7 @@ class RegistrationActivity : AppCompatActivity() {
                 .addOnSuccessListener {
                     progressDialog.dismiss()
                     toast("Registration successful.")
-                    changeUserStateToLoggedIn(getSharedPreferences(com.olegmisko.recipie.Config.PREFS_NAME, 0))
+                    LoginStateService.changeUserStateToLoggedIn(getSharedPreferences(PREFS_NAME, 0))
                     startActivity(intentFor<MainActivity>())
                 }
 

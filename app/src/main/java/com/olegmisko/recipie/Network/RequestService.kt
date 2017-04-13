@@ -1,4 +1,4 @@
-package com.olegmisko.recipie.Services
+package com.olegmisko.recipie.Network
 
 import com.olegmisko.recipie.Config.APP_ID
 import com.olegmisko.recipie.Config.APP_KEY

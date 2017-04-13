@@ -8,7 +8,7 @@ import com.olegmisko.recipie.Models.Hit
 import com.olegmisko.recipie.Models.Recipe
 import com.olegmisko.recipie.Models.Response
 import com.olegmisko.recipie.R
-import com.olegmisko.recipie.Services.RecipesRetrieveService
+import com.olegmisko.recipie.Network.RecipesRetrieveService
 import com.olegmisko.recipie.Views.RecipeAdapter
 import com.yarolegovich.lovelydialog.LovelyTextInputDialog
 import kotlinx.android.synthetic.main.activity_search_recipes.*
