@@ -22,7 +22,7 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         hideStatusBar()
         setContentView(R.layout.activity_splash_screen)
-        DownloadRecipeService.askExternalStoragePermissions(this)
+        DownloadRecipeService.checkExternalStoragePermissions(this)
 
         activity_splash_screen.sign_in_button.onClick {
            if (checkLoginState()) {

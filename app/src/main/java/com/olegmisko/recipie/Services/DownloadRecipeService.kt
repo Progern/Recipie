@@ -20,27 +20,29 @@ internal object DownloadRecipeService {
 
 
     fun saveRecipeFileToPhone(recipe: Recipe, context: Context) {
-        try {
-            val root = File(Environment.getExternalStorageDirectory(), "Recipes")
-            if (!root.exists()) {
-                root.mkdirs()
-            }
-            val recipeFile = File(root, validateRecipeLabel(recipe.label))
-            val writer = FileWriter(recipeFile)
-            writer.append(createTextFileFromRecipe(recipe))
-            writer.flush()
-            writer.close()
-            context.toast("Recipe saved.")
+        if (isExternalStorageWritable() || isExternalStorageReadable()) {
+            try {
+                val root = File(Environment.getExternalStorageDirectory(), "Recipes")
+                if (!root.exists()) {
+                    root.mkdirs()
+                }
+                val recipeFile = File(root, validateRecipeLabel(recipe.label))
+                val writer = FileWriter(recipeFile)
+                writer.append(createTextFileFromRecipe(recipe))
+                writer.flush()
+                writer.close()
+                context.toast("Recipe saved.")
 
-        } catch (e: IOException) {
-            e.printStackTrace()
-            context.toast("Error while saving recipe.")
+            } catch (e: IOException) {
+                e.printStackTrace()
+                context.toast("Error while saving recipe.")
+            }
         }
 
     }
 
     private fun createTextFileFromRecipe(recipe: Recipe): String {
-        return "Name: " + recipe.label + "\nCalories: " + recipe.calories + "\nIngredients:\n" + getIngredientsAsString(recipe.ingredients) + "\nSee more: " + recipe.url
+        return "Name: " + recipe.label + "\nCalories: " + recipe.calories + "\nIngredients:\n" + getIngredientsAsString(recipe.ingredients) + "\nMore:\n" + recipe.url
     }
 
     fun checkExternalStoragePermissions(activity: Activity): Boolean {
