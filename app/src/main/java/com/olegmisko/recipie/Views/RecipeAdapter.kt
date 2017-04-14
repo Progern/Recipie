@@ -17,6 +17,10 @@ import kotlinx.android.synthetic.main.recipe_item_layout.view.*
 import org.jetbrains.anko.image
 import org.jetbrains.anko.onClick
 import org.jetbrains.anko.toast
+import java.util.Collections.rotate
+import android.view.animation.AnimationUtils
+import android.view.animation.Animation
+import android.widget.ImageView
 
 
 class RecipeAdapter(val recipesList: ArrayList<Recipe>) :
@@ -40,6 +44,13 @@ class RecipeAdapter(val recipesList: ArrayList<Recipe>) :
                 Picasso.with(itemView.context).load(recipe.image).into(itemView.recipeImage)
                 itemView.title.text = recipe.label
                 Realm.init(itemView.context)
+                itemView.calories.text = "Calories: " + recipe.calories
+                itemView.total_weight.text = "Total weight: " + recipe.totalWeight
+                itemView.ingredients.text = DownloadRecipeService.getIngredientsAsString(recipe.ingredients)
+
+
+                /* On Click section */
+
                 itemView.save.onClick {
                     if (DownloadRecipeService.isExternalStorageWritable() || DownloadRecipeService.isExternalStorageWritable()) {
                         DownloadRecipeService.saveRecipeFileToPhone(recipe, itemView.context)
@@ -66,10 +77,27 @@ class RecipeAdapter(val recipesList: ArrayList<Recipe>) :
                 }
 
                 itemView.expand.onClick {
-                    // Expand the View
+                    if (!itemView.expandableLayout.isExpanded) {
+                        itemView.expandableLayout.expand()
+                        rotateImage(itemView.expand)
+
+                    } else {
+                        itemView.expandableLayout.collapse()
+                        rotateImage(itemView.expand)
+                    }
                 }
             }
         }
 
+        fun rotateImage(view : ImageView) {
+            val animation = AnimationUtils.loadAnimation(view.context, R.anim.rotate)
+            animation.fillAfter = true
+            animation.repeatCount = 0
+            view.expand.animation = animation
+            view.expand.startAnimation(animation)
+        }
+
     }
+
+
 }
