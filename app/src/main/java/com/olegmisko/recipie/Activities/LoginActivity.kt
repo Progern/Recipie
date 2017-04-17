@@ -3,10 +3,9 @@ package com.olegmisko.recipie.Activities
 import android.app.ProgressDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.Window
-import android.view.WindowManager
 import android.widget.EditText
 import com.google.firebase.auth.FirebaseAuth
+import com.olegmisko.recipie.Config.ActivityHelper
 import com.olegmisko.recipie.Config.PREFS_NAME
 import com.olegmisko.recipie.R
 import com.olegmisko.recipie.Services.InternetConnectionService
@@ -23,7 +22,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        hideStatusBar()
+        ActivityHelper.hideStatusBar(this)
         setContentView(R.layout.activity_login)
 
         firebaseAuthenticationManager = FirebaseAuth.getInstance()
@@ -83,12 +82,6 @@ class LoginActivity : AppCompatActivity() {
             // Handle Google login operation
         } */
 
-    }
-
-    private fun hideStatusBar() {
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        supportActionBar?.hide()
-        this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
     /*

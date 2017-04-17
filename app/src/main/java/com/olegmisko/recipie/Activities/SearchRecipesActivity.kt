@@ -4,6 +4,7 @@ import android.app.ProgressDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import com.olegmisko.recipie.Models.Hit
 import com.olegmisko.recipie.Models.Recipe
 import com.olegmisko.recipie.Models.Response
@@ -39,6 +40,14 @@ class SearchRecipesActivity : AppCompatActivity() {
         activity_search_recipes.fab_search.onClick {
             showInputSearchQueryDialog()
         }
+
+        activity_search_recipes.recipesRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+                if (dy > 5) activity_search_recipes.fab_search.hide()
+                else activity_search_recipes.fab_search.show()
+            }
+        })
+
     }
 
     private fun performSearchRequest(query: String) {
@@ -46,6 +55,7 @@ class SearchRecipesActivity : AppCompatActivity() {
         callResponse.enqueue(object : Callback<Response> {
             override fun onFailure(call: Call<Response>?, t: Throwable?) {
                 toast("Failure")
+                progressDialog.dismiss()
             }
 
             override fun onResponse(call: Call<Response>?, response: retrofit2.Response<Response>?) {

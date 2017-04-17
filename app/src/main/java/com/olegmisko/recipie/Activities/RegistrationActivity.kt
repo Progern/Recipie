@@ -9,6 +9,7 @@ import android.widget.EditText
 import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.google.firebase.auth.FirebaseAuth
+import com.olegmisko.recipie.Config.ActivityHelper
 import com.olegmisko.recipie.Config.PREFS_NAME
 import com.olegmisko.recipie.R
 import com.olegmisko.recipie.Services.InternetConnectionService
@@ -27,7 +28,7 @@ class RegistrationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        hideStatusBar()
+        ActivityHelper.hideStatusBar(this)
         setContentView(R.layout.activity_registration)
 
         firebaseAuthenticationManager = FirebaseAuth.getInstance()
@@ -119,13 +120,4 @@ class RegistrationActivity : AppCompatActivity() {
 
     }
 
-
-    /*
-        Hides the app bar and the status bar
-     */
-    private fun hideStatusBar() {
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        supportActionBar?.hide()
-        this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-    }
 }
