@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.ImageView
 import com.olegmisko.recipie.Activities.BrowserActivity
 import com.olegmisko.recipie.Models.Recipe
 import com.olegmisko.recipie.R
@@ -15,6 +14,7 @@ import com.olegmisko.recipie.Services.DatabaseService
 import com.olegmisko.recipie.Services.DownloadRecipeService
 import com.olegmisko.recipie.Services.SharingService
 import com.squareup.picasso.Picasso
+import com.yarolegovich.lovelydialog.LovelyStandardDialog
 import io.realm.Realm
 import kotlinx.android.synthetic.main.recipe_item_layout.view.*
 import org.jetbrains.anko.image
@@ -33,7 +33,8 @@ class RecipeAdapter(val recipesList: ArrayList<Recipe>) :
     override fun onBindViewHolder(holderRecipe: RecipeViewHolder, position: Int) {
         holderRecipe.bindRecipe(this, recipesList[position])
         holderRecipe.itemView.like.image = ContextCompat.getDrawable(holderRecipe.itemView.context,
-                if(recipesList[position].isFavorite) R.drawable.ic_star_after_like else R.drawable.ic_star_before_like)
+                if (recipesList[position].isFavorite) R.drawable.ic_fav else R.drawable.ic_non_fav)
+
     }
 
 
@@ -51,62 +52,72 @@ class RecipeAdapter(val recipesList: ArrayList<Recipe>) :
                 itemView.ingredients.text = DownloadRecipeService.getIngredientsAsString(recipe.ingredients)
                 itemView.expandableLayout.collapse()
 
-                /* On Click section */
-
-                itemView.save.onClick {
-                    if (DownloadRecipeService.isExternalStorageWritable() || DownloadRecipeService.isExternalStorageWritable()) {
-                        DownloadRecipeService.saveRecipeFileToPhone(recipe, itemView.context)
-                    }
-                }
 
                 itemView.like.onClick {
-                    if (recipe.isFavorite) {
-                        itemView.like.image = ContextCompat.getDrawable(itemView.context, R.drawable.ic_star_before_like)
-                        recipe.isFavorite = false
-                        adapter.notifyDataSetChanged()
-                        DatabaseService.removeRecipeFromFavorites(recipe)
-                        itemView.context.toast("Recipe removed from favorites.")
-                    } else {
-                        itemView.like.image = ContextCompat.getDrawable(itemView.context, R.drawable.ic_star_after_like)
-                        recipe.isFavorite = true
-                        adapter.notifyDataSetChanged()
-                        DatabaseService.addNewFavoriteRecipe(recipe)
-                        itemView.context.toast("Recipe added to favorites.")
-                    }
-
+                    favoriteRecipe(recipe, adapter)
                 }
+
+
+                itemView.recipeImage.onClick {
+                    showExternalLinkDialog(recipe)
+                }
+
 
                 itemView.share.onClick {
                     SharingService.shareRecipe(itemView.context, recipe)
                 }
 
+
                 itemView.expand.onClick {
-                    if (!itemView.expandableLayout.isExpanded) {
-                        itemView.expandableLayout.expand()
-                        val animation = AnimationUtils.loadAnimation(view.context, R.anim.rotate)
-                        animation.fillAfter = true
-                        itemView.expand.startAnimation(animation)
-
-                    } else {
-                        itemView.expandableLayout.collapse()
-                        val animation = AnimationUtils.loadAnimation(view.context, R.anim.rotate_reverse)
-                        animation.fillAfter = true
-                        itemView.expand.startAnimation(animation)
-                    }
+                    expandLayout()
                 }
 
-                itemView.recipeImage.onClick {
-                    var loadRecipeIntent = Intent(itemView.context, BrowserActivity::class.java)
-                    loadRecipeIntent.putExtra("URL", recipe.url)
-                    loadRecipeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    itemView.context.startActivity(loadRecipeIntent)
-
-                }
-
-                /* End of onClick section */
             }
         }
 
+        private fun showExternalLinkDialog(recipe: Recipe) {
+            LovelyStandardDialog(itemView.context)
+                    .setTopColorRes(R.color.colorPrimary)
+                    .setTitle("External action")
+                    .setMessage("Do you want to load recipe url?")
+                    .setIcon(R.drawable.ic_external_link)
+                    .setPositiveButton("YES", {
+                        var loadRecipeIntent = Intent(itemView.context, BrowserActivity::class.java)
+                        loadRecipeIntent.putExtra("URL", recipe.url)
+                        loadRecipeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        itemView.context.startActivity(loadRecipeIntent)
+                    })
+                    .setNegativeButton("Nah..", {})
+                    .show()
+        }
+
+        private fun favoriteRecipe(recipe: Recipe, adapter: RecipeAdapter) {
+            if (recipe.isFavorite) {
+                recipe.isFavorite = false
+                adapter.notifyDataSetChanged()
+                DatabaseService.removeRecipeFromFavorites(recipe)
+                itemView.context.toast("Recipe removed from favorites.")
+            } else {
+                recipe.isFavorite = true
+                adapter.notifyDataSetChanged()
+                DatabaseService.addNewFavoriteRecipe(recipe)
+                itemView.context.toast("Recipe added to favorites.")
+            }
+        }
+
+        private fun expandLayout() {
+            if (!itemView.expandableLayout.isExpanded) {
+                itemView.expandableLayout.expand()
+                val animation = AnimationUtils.loadAnimation(view.context, R.anim.rotate)
+                animation.fillAfter = true
+
+            } else {
+                itemView.expandableLayout.collapse()
+                val animation = AnimationUtils.loadAnimation(view.context, R.anim.rotate_reverse)
+                animation.fillAfter = true
+
+            }
+        }
 
     }
 

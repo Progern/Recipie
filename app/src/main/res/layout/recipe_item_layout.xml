@@ -4,19 +4,21 @@
   android:id="@+id/recipe_item_layout"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:layout_marginTop="20dp">
+  android:layout_marginTop="8dp"
+  android:layout_marginLeft="8dp"
+  android:layout_marginRight="8dp">
 
   <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="4"
+    android:weightSum="5"
     android:id="@+id/main_sector">
 
     <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="0dip"
-      android:layout_weight="3.2"
+      android:layout_weight="4.0"
       android:orientation="vertical">
 
       <FrameLayout
@@ -27,7 +29,7 @@
         <ImageView
           android:id="@+id/recipeImage"
           android:layout_width="match_parent"
-          android:layout_height="250dp"
+          android:layout_height="wrap_content"
           android:layout_gravity="center"
           android:scaleType="centerCrop"
           android:src="@drawable/sushi"
@@ -44,10 +46,12 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
-            android:textSize="14sp"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold" />
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF" />
         </LinearLayout>
       </FrameLayout>
     </LinearLayout>
@@ -55,41 +59,37 @@
     <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="0dip"
-      android:layout_weight="0.8"
-      android:gravity="center|right"
+      android:layout_weight="1.0"
+      android:gravity="center|left"
       android:orientation="horizontal">
 
       <ImageView
         android:id="@+id/like"
         android:layout_width="@dimen/icon_size_card"
         android:layout_height="@dimen/icon_size_card"
-        android:padding="5dp"
-        android:layout_marginRight="@dimen/icon_margin_card"
-        android:src="@drawable/ic_star_before_like" />
+        android:padding="@dimen/icon_padding"
+        android:src="@drawable/ic_non_fav"
+        android:background="@drawable/ripple"
+        android:layout_weight="1"/>
 
       <ImageView
         android:id="@+id/share"
         android:layout_width="@dimen/icon_size_card"
         android:layout_height="@dimen/icon_size_card"
-        android:padding="5dp"
-        android:layout_marginRight="@dimen/icon_margin_card"
-        android:src="@drawable/ic_share" />
+        android:padding="@dimen/icon_padding"
+        android:src="@drawable/ic_share"
+        android:background="@drawable/ripple"
+        android:layout_weight="1"/>
 
       <ImageView
-        android:id="@+id/save"
         android:layout_width="@dimen/icon_size_card"
         android:layout_height="@dimen/icon_size_card"
-        android:padding="5dp"
-        android:layout_marginRight="@dimen/icon_margin_card"
-        android:src="@drawable/ic_save_recipe" />
-
-      <ImageView
         android:id="@+id/expand"
-        android:layout_width="@dimen/icon_size_card"
-        android:layout_height="@dimen/icon_size_card"
-        android:padding="5dp"
-        android:layout_marginRight="@dimen/icon_margin_card"
-        android:src="@drawable/ic_down_arrow" />
+        android:padding="@dimen/icon_padding"
+        android:src="@drawable/ic_expand"
+        android:layout_weight="1"/>
+
+
 
     </LinearLayout>
 
@@ -100,7 +100,9 @@
       app:ael_duration="500"
       app:ael_expanded="false"
       app:ael_interpolator="fastOutSlowIn"
-      app:ael_orientation="vertical">
+      app:ael_orientation="vertical"
+      android:paddingBottom="8dp"
+      android:paddingTop="8dp">
 
       <View
         android:layout_width="match_parent"
@@ -115,8 +117,10 @@
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:textColor="@color/colorPrimaryText"
-        android:paddingBottom="5dp"
-        android:layout_below="@id/divider"/>
+        android:layout_below="@id/divider"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp"/>
       <TextView
         android:id="@+id/calories"
         android:layout_width="match_parent"
@@ -124,7 +128,8 @@
         android:layout_below="@id/ingredients"
         android:textSize="14sp"
         android:textColor="@color/colorPrimaryText"
-        android:textStyle="bold" />
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"/>
 
       <TextView
         android:id="@+id/total_weight"
@@ -132,7 +137,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/calories"
         android:textSize="14sp"
-        android:textColor="@color/colorPrimaryText" />
+        android:textColor="@color/colorPrimaryText"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"/>
 
     </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
 
