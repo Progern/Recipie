@@ -87,6 +87,7 @@
         android:id="@+id/expand"
         android:padding="@dimen/icon_padding"
         android:src="@drawable/ic_expand"
+        android:background="@drawable/ripple"
         android:layout_weight="1"/>
 
 

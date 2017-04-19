@@ -60,4 +60,8 @@ class MainActivity : AppCompatActivity() {
         activity_main.logout_text.typeface = typeface
     }
 
+    override fun onBackPressed() {
+        // Do nothing
+    }
+
 }

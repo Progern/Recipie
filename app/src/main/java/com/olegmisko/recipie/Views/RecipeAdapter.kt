@@ -52,24 +52,20 @@ class RecipeAdapter(val recipesList: ArrayList<Recipe>) :
                 itemView.ingredients.text = DownloadRecipeService.getIngredientsAsString(recipe.ingredients)
                 itemView.expandableLayout.collapse()
 
-
                 itemView.like.onClick {
-                    favoriteRecipe(recipe, adapter)
+                    performFavoriteOnClick(recipe, adapter)
                 }
-
 
                 itemView.recipeImage.onClick {
                     showExternalLinkDialog(recipe)
                 }
 
-
                 itemView.share.onClick {
                     SharingService.shareRecipe(itemView.context, recipe)
                 }
 
-
                 itemView.expand.onClick {
-                    expandLayout()
+                    expandLayoutOnClick()
                 }
 
             }
@@ -87,11 +83,11 @@ class RecipeAdapter(val recipesList: ArrayList<Recipe>) :
                         loadRecipeIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         itemView.context.startActivity(loadRecipeIntent)
                     })
-                    .setNegativeButton("Nah..", {})
+                    .setNegativeButton("NO", {})
                     .show()
         }
 
-        private fun favoriteRecipe(recipe: Recipe, adapter: RecipeAdapter) {
+        private fun performFavoriteOnClick(recipe: Recipe, adapter: RecipeAdapter) {
             if (recipe.isFavorite) {
                 recipe.isFavorite = false
                 adapter.notifyDataSetChanged()
@@ -105,16 +101,18 @@ class RecipeAdapter(val recipesList: ArrayList<Recipe>) :
             }
         }
 
-        private fun expandLayout() {
+        private fun expandLayoutOnClick() {
             if (!itemView.expandableLayout.isExpanded) {
                 itemView.expandableLayout.expand()
                 val animation = AnimationUtils.loadAnimation(view.context, R.anim.rotate)
                 animation.fillAfter = true
+                itemView.expand.startAnimation(animation)
 
             } else {
                 itemView.expandableLayout.collapse()
                 val animation = AnimationUtils.loadAnimation(view.context, R.anim.rotate_reverse)
                 animation.fillAfter = true
+                itemView.expand.startAnimation(animation)
 
             }
         }

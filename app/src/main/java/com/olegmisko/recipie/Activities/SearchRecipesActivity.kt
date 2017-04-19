@@ -5,15 +5,19 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import com.olegmisko.recipie.Models.Hit
 import com.olegmisko.recipie.Models.Recipe
 import com.olegmisko.recipie.Models.Response
-import com.olegmisko.recipie.R
 import com.olegmisko.recipie.Network.RecipesRetrieveService
+import com.olegmisko.recipie.R
 import com.olegmisko.recipie.Views.RecipeAdapter
+import com.yarolegovich.lovelydialog.LovelyInfoDialog
 import com.yarolegovich.lovelydialog.LovelyTextInputDialog
 import kotlinx.android.synthetic.main.activity_search_recipes.*
 import kotlinx.android.synthetic.main.activity_search_recipes.view.*
+import kotlinx.android.synthetic.main.custom_action_bar.*
+import kotlinx.android.synthetic.main.custom_action_bar.view.*
 import org.jetbrains.anko.indeterminateProgressDialog
 import org.jetbrains.anko.onClick
 import org.jetbrains.anko.toast
@@ -23,7 +27,6 @@ import retrofit2.Callback
 
 class SearchRecipesActivity : AppCompatActivity() {
 
-    //private lateinit var recipesTestList: ArrayList<Recipe>
     private lateinit var recipesAdapter: RecipeAdapter
     private val recipesRetrieveService = RecipesRetrieveService()
     private lateinit var progressDialog: ProgressDialog
@@ -32,7 +35,25 @@ class SearchRecipesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_recipes)
-        title = "Search recipes"
+
+        val customActionBar = supportActionBar
+        customActionBar?.setDisplayShowHomeEnabled(false)
+        customActionBar?.setDisplayShowTitleEnabled(false)
+
+        val layoutInflater = LayoutInflater.from(this)
+        val customView = layoutInflater.inflate(R.layout.custom_action_bar, null)
+        customActionBar?.customView = customView
+        customActionBar?.setDisplayShowCustomEnabled(true)
+
+        showInfoDialog()
+
+        custom_action_bar.go_back_button.onClick {
+            onBackPressed()
+        }
+
+        custom_action_bar.title_text.text = "Search recipes"
+
+
         progressDialog = indeterminateProgressDialog("Fetching data…")
         progressDialog.dismiss()
 
@@ -77,14 +98,28 @@ class SearchRecipesActivity : AppCompatActivity() {
 
     private fun showInputSearchQueryDialog() {
         LovelyTextInputDialog(this)
-                .setTopColorRes(R.color.colorPrimary)
+                .setTopColorRes(R.color.colorPrimaryLight)
                 .setTitle("Delicious food is coming!")
-                .setMessage("Input desirable recipe name and start your tasty journey")
+                .setMessage("Input recipe name and start your tasteful journey")
                 .setIcon(R.drawable.ic_recipes_book)
                 .setConfirmButton("Search", { text ->
                     if (!text.isEmpty())
                         progressDialog.show()
-                        performSearchRequest(text) })
+                    performSearchRequest(text)
+                })
                 .show()
+    }
+
+    private fun showInfoDialog() {
+        LovelyInfoDialog(this)
+                .setTopColorRes(R.color.colorPrimaryLight)
+                .setIcon(R.drawable.ic_info)
+                .setTitle("Extended recipe information")
+                .setMessage("To load recipe in built-in web-browser click on recipe image")
+                .setNotShowAgainOptionChecked(false)
+                .setNotShowAgainOptionEnabled(0)
+                .setConfirmButtonText("OK")
+                .show()
+
     }
 }
