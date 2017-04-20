@@ -23,7 +23,8 @@
     <activity android:name=".Activities.RegistrationActivity" />
     <activity android:name=".Activities.MainActivity" />
     <activity android:name=".Activities.SearchRecipesActivity" />
-    <activity android:name=".Activities.BrowserActivity"></activity>
+    <activity android:name=".Activities.BrowserActivity" />
+    <activity android:name=".Activities.AddRecipesActivity"></activity>
   </application>
 
 </manifest>

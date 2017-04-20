@@ -25,8 +25,8 @@ class MainActivity : AppCompatActivity() {
             startActivity(intentFor<SearchRecipesActivity>())
         }
 
-        activity_main.add_recipes_text.onClick {
-            //TODO: Start add recipes Activity
+        activity_main.addRecipe.onClick {
+            startActivity(intentFor<AddRecipesActivity>())
         }
 
         activity_main.favoriteRecipes.onClick {
