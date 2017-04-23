@@ -4,6 +4,8 @@ import android.app.ProgressDialog
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.EditText
+import com.daimajia.androidanimations.library.Techniques
+import com.daimajia.androidanimations.library.YoYo
 import com.google.firebase.auth.FirebaseAuth
 import com.olegmisko.recipie.Config.ActivityHelper
 import com.olegmisko.recipie.Config.PREFS_NAME
@@ -37,8 +39,16 @@ class LoginActivity : AppCompatActivity() {
                 if (checkField(activity_login.email) && checkField(activity_login.password)) {
                     userLogin(activity_login.email.text.toString(), activity_login.password.text.toString())
                     progressDialog.show()
-                } else {
-
+                } else if (!checkField(activity_login.email)){
+                    YoYo.with(Techniques.Shake)
+                            .duration(500)
+                            .playOn(activity_login.email)
+                    toast("Input your login.")
+                } else if (!checkField(activity_login.password)) {
+                    YoYo.with(Techniques.Shake)
+                            .duration(500)
+                            .playOn(activity_login.password)
+                    toast("Input your password.")
                 }
             }
         }
@@ -57,6 +67,7 @@ class LoginActivity : AppCompatActivity() {
                         positiveButton("Submit") {
                             if (!email.text.toString().trim().isEmpty()) {
                                 firebaseAuthenticationManager.sendPasswordResetEmail(email.text.toString().trim())
+                                toast("Message sent. Please, check your email.")
                             }
 
                         }
