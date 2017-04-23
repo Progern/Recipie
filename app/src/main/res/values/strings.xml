@@ -3,7 +3,7 @@
   <string name="splash_screen_text">Start your exciting food tour</string>
   <string name="splash_get_started">Get started</string>
   <string name="splash_sign_in">Sign in</string>
-  <string name="username">Username</string>
+  <string name="username">Email/Username</string>
   <string name="password">Password</string>
   <string name="submit">Submit</string>
   <string name="login_via_facebook">Login via Facebook</string>

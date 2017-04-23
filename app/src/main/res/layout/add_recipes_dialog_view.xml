@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/add_recipes_dialog_view"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  android:layout_marginLeft="5dp"
+  android:layout_marginRight="5dp">
+
+  <EditText
+    android:id="@+id/recipe_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/add_recipes_fields_padding"
+    android:hint="Recipe name"
+    android:ems="12"
+    android:fontFamily="sans-serif-medium"
+    android:textAlignment="center"
+    android:lines="1"
+    android:inputType="text">
+    <requestFocus/>
+  </EditText>
+
+  <EditText
+    android:id="@+id/imageURL"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/add_recipes_fields_padding"
+    android:hint="Image URL"
+    android:inputType="textUri"
+    android:ems="12"
+    android:fontFamily="sans-serif-medium"
+    android:lines="1"/>
+
+  <EditText
+    android:id="@+id/recipeURL"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/add_recipes_fields_padding"
+    android:hint="Recipe URL"
+    android:inputType="textUri"
+    android:ems="12"
+    android:fontFamily="sans-serif-medium"
+    android:lines="1"/>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <EditText
+      android:id="@+id/caloriesValue"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/add_recipes_fields_padding"
+      android:hint="Calories"
+      android:inputType="number"
+      android:layout_weight="1"
+      android:layout_marginRight="@dimen/add_recipes_fields_padding"
+      android:ems="12"
+      android:fontFamily="sans-serif-medium"
+      android:textAlignment="center"
+      android:lines="1"/>
+
+    <EditText
+      android:id="@+id/totalWeight"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="@dimen/add_recipes_fields_padding"
+      android:hint="Total weight"
+      android:inputType="number"
+      android:layout_weight="1"
+      android:layout_marginLeft="@dimen/add_recipes_fields_padding"
+      android:ems="12"
+      android:fontFamily="sans-serif-medium"
+      android:textAlignment="center"
+      android:lines="1"/>
+  </LinearLayout>
+
+  <EditText
+    android:id="@+id/ingredientsField"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/add_recipes_fields_padding"
+    android:hint="Ingredients"
+    android:fontFamily="sans-serif-medium" />
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="10dp"
+    android:ems="12"
+    android:fontFamily="sans-serif-medium"
+    android:textAlignment="center"
+    android:lines="1">
+
+    <Button
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:id="@+id/dismiss_dialog"
+      android:background="@drawable/transparent_button"
+      android:text="Cancel"
+      android:layout_weight="1"
+      android:textColor="@color/colorPrimary"
+      android:layout_marginRight="20dp"/>
+
+    <Button
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:id="@+id/save_recipe_and_add_to_db"
+      android:background="@drawable/transparent_button"
+      android:text="Save"
+      android:layout_weight="1"
+      android:textColor="@color/colorPrimary"
+      android:layout_marginLeft="20dp"/>
+  </LinearLayout>
+
+
+</LinearLayout>

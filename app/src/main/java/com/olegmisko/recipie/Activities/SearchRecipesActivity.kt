@@ -98,7 +98,7 @@ class SearchRecipesActivity : AppCompatActivity() {
 
     private fun showInputSearchQueryDialog() {
         LovelyTextInputDialog(this)
-                .setTopColorRes(R.color.colorPrimaryLight)
+                .setTopColorRes(R.color.colorPrimary)
                 .setTitle("Delicious food is coming!")
                 .setMessage("Input recipe name and start your tasteful journey")
                 .setIcon(R.drawable.ic_recipes_book)
@@ -112,7 +112,7 @@ class SearchRecipesActivity : AppCompatActivity() {
 
     private fun showInfoDialog() {
         LovelyInfoDialog(this)
-                .setTopColorRes(R.color.colorPrimaryLight)
+                .setTopColorRes(R.color.colorPrimary)
                 .setIcon(R.drawable.ic_info)
                 .setTitle("Extended recipe information")
                 .setMessage("To load recipe in built-in web-browser click on recipe image")

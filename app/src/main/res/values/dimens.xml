@@ -6,4 +6,5 @@
   <dimen name="icon_margin_card">16dp</dimen>
   <dimen name="icon_padding">6dp</dimen>
   <dimen name="fab_margin">8dp</dimen>
+  <dimen name="add_recipes_fields_padding">5dp</dimen>
 </resources>
